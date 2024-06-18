@@ -1,104 +1,179 @@
-@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
 
 html {
-  --primary-color: #161f6d;
-  --secondary-color: #00abe1;
+  --color-1: #6c5d4e;
+  --color-2: #826a48;
+  --color-3: #ae8853;
+  --color-4: #9d684b;
+  --color-5: #9d956c;
+  --color-6: #cbb874;
+  --text-color: mintcream;
 }
 
-html,
 body {
-  margin: 0;
-}
-
-body {
-  font-size: 20px;
+  background-color: black;
+  font-family: "Arial", sans-serif;
+  font-weight: 500;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  font-family: "Luckiest Guy", cursive;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  letter-spacing: 0.15em;
-}
-
-.heading {
-  font-size: 2em;
-}
-
-.description {
-  font-size: 1.5em;
-}
-
-#game-board {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1em;
-  margin-top: 1em;
-}
-
-#new-game-button {
-  border: none;
-  border-radius: 5px;
-  padding: 0.5em;
-  background: var(--primary-color);
-  cursor: pointer;
-  color: white;
-  text-transform: uppercase;
-  transition: opacity 0.2s ease-in-out;
-  padding: 0.5em 1.5em;
-  border-radius: 1.5em;
-  font-size: 1em;
-  font-family: inherit;
-  letter-spacing: inherit;
-}
-
-#new-game-button:hover {
-  opacity: 0.8;
-}
-
-.card {
-  width: 5em;
-  height: 5em;
-  perspective: 50em;
-  cursor: pointer;
-}
-
-.card-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.5s;
-}
-
-.card.visible .card-inner {
-  transform: rotateY(180deg);
-}
-
-.card-front,
-.card-back {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  backface-visibility: hidden;
-  display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--primary-color);
-  border-radius: 0.5em;
-  box-shadow: 0.05em 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.1);
-  font-size: 2.5em;
-  color: white;
+  height: 100vh;
 }
 
-.card-back {
-  transform: rotateY(180deg);
+.title {
+  color: var(--text-color);
+  text-transform: uppercase;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  font-size: 1em;
+  letter-spacing: 0.2em;
 }
 
-@media (max-width: 768px) {
-  #game-board {
-    grid-template-columns: repeat(2, 1fr);
+.keyboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  list-style: none;
+  display: flex;
+}
+
+li {
+  height: 3em;
+  width: 3em;
+  color: black;
+  border-radius: 0.4em;
+  line-height: 3em;
+  letter-spacing: 1px;
+  margin: 0.4em;
+  transition: 0.3s;
+  text-align: center;
+  font-size: 1em;
+}
+
+#tab {
+  width: 5em;
+}
+
+#caps {
+  width: 6em;
+}
+
+#left-shift {
+  width: 8em;
+}
+
+#enter {
+  width: 6em;
+}
+
+#right-shift {
+  width: 8em;
+}
+
+#back {
+  width: 5em;
+}
+
+.pinky {
+  background-color: var(--color-1);
+  border: 2px solid var(--color-1);
+}
+
+.pinky.selected {
+  color: var(--color-1);
+}
+
+.ring {
+  background-color: var(--color-2);
+  border: 2px solid var(--color-2);
+}
+
+.ring.selected {
+  color: var(--color-2);
+}
+
+.middle {
+  background-color: var(--color-3);
+  border: 2px solid var(--color-3);
+}
+
+.middle.selected {
+  color: var(--color-3);
+}
+
+.pointer1st {
+  background-color: var(--color-4);
+  border: 2px solid var(--color-4);
+}
+
+.pointer1st.selected {
+  color: var(--color-4);
+}
+
+.pointer2nd {
+  background-color: var(--color-5);
+  border: 2px solid var(--color-5);
+}
+
+.pointer2nd.selected {
+  color: var(--color-5);
+}
+
+.fill-out-key {
+  background-color: var(--color-6);
+  border: 2px solid var(--color-6);
+}
+
+.selected {
+  background-color: transparent;
+  animation: vibrate 0.3s linear infinite both;
+}
+
+.hit {
+  animation: hit 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.result {
+  margin-top: 0;
+}
+
+@keyframes hit {
+  0% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes vibrate {
+  0% {
+    transform: translate(0);
+  }
+
+  20% {
+    transform: translate(-2px, 2px);
+  }
+
+  40% {
+    transform: translate(-2px, -2px);
+  }
+
+  60% {
+    transform: translate(2px, 2px);
+  }
+
+  80% {
+    transform: translate(2px, -2px);
+  }
+
+  100% {
+    transform: translate(0);
   }
 }
